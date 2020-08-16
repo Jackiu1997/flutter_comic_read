@@ -1,0 +1,96 @@
+{
+    "name": "腾讯动漫",
+    "url": "ac.qq.com",
+    "version": 100,
+    "search": {
+        "url": "https://ac.qq.com/Comic/searchList?search=${key}",
+        "charset": "utf-8",
+        "list": "div.mod_958wr.mod_gbd.mod_wbg.mod_of.ma.mod_all_cata_wr > ul > li",
+        "name": "h4 > a",
+        "author": "",
+        "cover": "a > img",
+        "detail": "a > div > div.mod_book_detail_info > h3"
+    },
+    "detail": {
+        "name": ".title > span:nth-child(1)",
+        "author": ".author-name",
+        "cover": ".left-part > .figure > .pic > a > img",
+        "summary": ".introduce",
+        "status": ".count-detail > div:nth-child(1) > span:nth-child(2)",
+        "update": ".count-detail > div:nth-child(2) > span",
+        "lastChapter": ".chapter-info > h3 > a",
+        "catalog": ".btn-row > a:nth-child(1)"
+    },
+    "catalog": {
+        "list": ".story-catalog",
+        "orderBy": 0,
+        "name": "a@attr->title",
+        "chapter": "a"
+    },
+    "chapter": {
+        "content": ".article-content"
+    },
+    "rank": [
+        {
+            "title": "人气榜",
+            "url": "https://m.sfacg.com/rank/original.html",
+            "page": 1,
+            "size": 20,
+            "list": "ul.book_list",
+            "name": "#listtitle",
+            "author": "a > li:nth-child(2) > div:nth-child(3)@match->(.+)(?= /)",
+            "cover": "img",
+            "detail": "a@attr->href@replace->m.sfacg.com/b/->book.sfacg.com/Novel/"
+        },
+        {
+            "title": "全部",
+            "url": "http://book.sfacg.com/List/default.aspx?tid=${key}&PageIndex=${page}",
+            "page": 1,
+            "size": 20,
+            "categories": [
+                {
+                    "key": "-1",
+                    "value": "全部"
+                },
+                {
+                    "key": "21",
+                    "value": "魔幻"
+                },
+                {
+                    "key": "22",
+                    "value": "玄幻"
+                },
+                {
+                    "key": "23",
+                    "value": "古风"
+                },
+                {
+                    "key": "24",
+                    "value": "科幻"
+                },
+                {
+                    "key": "25",
+                    "value": "校园"
+                },
+                {
+                    "key": "26",
+                    "value": "都市"
+                },
+                {
+                    "key": "27",
+                    "value": "游戏"
+                },
+                {
+                    "key": "28",
+                    "value": "同人"
+                },
+                {
+                    "key": "29",
+                    "value": "悬疑"
+                }
+            ],
+            "list": ".Comic_Pic_List",
+            "author": ".Comic_Pic_List > li:nth-child(2) > a"
+        }
+    ]
+}

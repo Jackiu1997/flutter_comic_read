@@ -84,7 +84,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: <Widget>[
                       Text("Jackiu Hu", style: _theme.textTheme.bodyText1),
                       SizedBox(height: 10),
-                      Text("+86 15055478393", style: _theme.textTheme.bodyText2),
+                      Text("+86 15055478393",
+                          style: _theme.textTheme.bodyText2),
                       SizedBox(height: 10),
                       Text("离线", style: _theme.textTheme.bodyText2),
                     ],
@@ -95,9 +96,9 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           // setting switches
           SizedBox(height: 20),
-          Flexible(
+          Expanded(
             child: ListView(
-              physics: NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(20),
               children: <Widget>[
                 _buildSwitch(
                   "黑夜模式",
@@ -107,7 +108,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     value: _settings.value,
                     onChanged: (bool value) {
                       _settings.turnDarkMode();
-                    }, 
+                    },
                   ),
                 ),
                 _buildSwitch(
@@ -135,27 +136,13 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildSwitch(String title, IconData icon, CupertinoSwitch switcher) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      padding: EdgeInsets.symmetric(horizontal: 30),
-      width: screenSize.width - 40,
-      height: screenSize.height * 0.1 - 30,
-      decoration: BoxDecoration(
-        color: _theme.disabledColor,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Icon(icon, size: 16, color: _theme.primaryColor),
-              SizedBox(width: 20),
-              Text(title, style: _theme.textTheme.bodyText2),
-            ],
-          ),
-          switcher != null ? switcher : Divider(),
-        ],
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 4),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      child: ListTile(
+        leading: Icon(icon, color: _theme.primaryColor),
+        title: Text(title, style: _theme.textTheme.bodyText2),
+        trailing: switcher != null ? switcher : Icon(Icons.arrow_forward),
       ),
     );
   }

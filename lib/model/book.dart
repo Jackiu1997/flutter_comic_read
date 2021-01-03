@@ -3,13 +3,13 @@ import 'package:comic_read/model/book_source.dart';
 
 class Book with ChangeNotifier {
   BookSource booksource;
-  String name;
-  String author;
-  String cover;
-  String summary;
-  String status;
-  String update;
-  String lastChapter;
+  String name = '';
+  String author = '';
+  String cover = '';
+  String summary = '';
+  String status = '';
+  String update = '';
+  String lastChapter = '';
   int readIndex = 0;
   List<Chapter> chapters;
 
@@ -26,7 +26,6 @@ class Book with ChangeNotifier {
       this.lastChapter,
       this.readIndex,
       this.chapters}) {
-    lastChapter = chapters.last.name;
     readIndex = 0;
   }
 
@@ -60,14 +59,14 @@ class Book with ChangeNotifier {
     data['lastChapter'] = this.lastChapter;
     data['readIndex'] = this.readIndex;
     if (this.chapters != null) {
-      data['chapter'] = this.chapters.map((v) => v.toJson()).toList();
+      data['chapter'] = this.chapters.map((c) => c.toJson()).toList();
     }
     return data;
   }
 }
 
 class Chapter with ChangeNotifier {
-  String name;
+  String name = '';
   bool isread = false;
   bool isload = false;
   List<String> content;
@@ -90,36 +89,6 @@ class Chapter with ChangeNotifier {
     return data;
   }
 }
-
-/*
-{
-  "booksource": "",
-  "name": ".title > span:nth-child(1)",
-  "author": ".author-name",
-  "cover": ".left-part > .figure > .pic > a > img",
-  "summary": ".introduce",
-  "status": ".count-detail > div:nth-child(1) > span:nth-child(2)@match->(?<=\\[)(.+)(?=\\])",
-  "update": ".count-detail > div:nth-child(2) > span@match->(?<=更新：)(.+)",
-  "lastChapter": ".chapter-info > h3 > a",
-  "readIndex": "10",
-  "chapter": [
-      {
-          "name": "a@attr->title",
-          "isread": false,
-          "isload": false,
-          "content": [
-              ".article-content"
-          ]
-      },
-      {
-          "isread": false,
-          "isload": false,
-          "content": [
-              ".article-content"
-          ]
-      }
-  ]
-}*/
 
 List<Book> buildTestBooks() {
   List<String> chapters = [

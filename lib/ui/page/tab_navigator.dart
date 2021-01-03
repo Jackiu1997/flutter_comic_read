@@ -66,17 +66,11 @@ class _TabNavigatorState extends State<TabNavigator> {
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.book),
-            title: Text("书架"),
-          ),
+              icon: FaIcon(FontAwesomeIcons.book), label: "书架"),
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.draftingCompass),
-            title: Text("书架"),
-          ),
+              icon: FaIcon(FontAwesomeIcons.draftingCompass), label: "发现"),
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.userAstronaut),
-            title: Text("书架"),
-          ),
+              icon: FaIcon(FontAwesomeIcons.userAstronaut), label: "个人"),
         ],
         currentIndex: _selectedIndex,
         onTap: (index) {

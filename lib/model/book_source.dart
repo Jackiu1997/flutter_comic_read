@@ -2,11 +2,11 @@ class BookSource {
   String name;
   String url;
   int version;
-  Search search;
-  Detail detail;
-  Catalog catalog;
-  Chapter chapter;
-  List<Rank> rank;
+  SearchRule search;
+  DetailRule detail;
+  CatalogRule catalog;
+  ChapterRule chapter;
+  List<RankRule> rank;
 
   BookSource(
       {this.name,
@@ -23,17 +23,17 @@ class BookSource {
     url = json['url'];
     version = json['version'];
     search =
-        json['search'] != null ? new Search.fromJson(json['search']) : null;
+        json['search'] != null ? new SearchRule.fromJson(json['search']) : null;
     detail =
-        json['detail'] != null ? new Detail.fromJson(json['detail']) : null;
+        json['detail'] != null ? new DetailRule.fromJson(json['detail']) : null;
     catalog =
-        json['catalog'] != null ? new Catalog.fromJson(json['catalog']) : null;
+        json['catalog'] != null ? new CatalogRule.fromJson(json['catalog']) : null;
     chapter =
-        json['chapter'] != null ? new Chapter.fromJson(json['chapter']) : null;
+        json['chapter'] != null ? new ChapterRule.fromJson(json['chapter']) : null;
     if (json['rank'] != null) {
-      rank = new List<Rank>();
+      rank = new List<RankRule>();
       json['rank'].forEach((v) {
-        rank.add(new Rank.fromJson(v));
+        rank.add(new RankRule.fromJson(v));
       });
     }
   }
@@ -62,7 +62,7 @@ class BookSource {
   }
 }
 
-class Search {
+class SearchRule {
   String url;
   String charset;
   String list;
@@ -71,7 +71,7 @@ class Search {
   String cover;
   String detail;
 
-  Search(
+  SearchRule(
       {this.url,
       this.charset,
       this.list,
@@ -80,7 +80,7 @@ class Search {
       this.cover,
       this.detail});
 
-  Search.fromJson(Map<String, dynamic> json) {
+  SearchRule.fromJson(Map<String, dynamic> json) {
     url = json['url'];
     charset = json['charset'];
     list = json['list'];
@@ -103,7 +103,7 @@ class Search {
   }
 }
 
-class Detail {
+class DetailRule {
   String name;
   String author;
   String cover;
@@ -113,7 +113,7 @@ class Detail {
   String lastChapter;
   String catalog;
 
-  Detail(
+  DetailRule(
       {this.name,
       this.author,
       this.cover,
@@ -123,7 +123,7 @@ class Detail {
       this.lastChapter,
       this.catalog});
 
-  Detail.fromJson(Map<String, dynamic> json) {
+  DetailRule.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     author = json['author'];
     cover = json['cover'];
@@ -148,15 +148,15 @@ class Detail {
   }
 }
 
-class Catalog {
+class CatalogRule {
   String list;
   int orderBy;
   String name;
   String chapter;
 
-  Catalog({this.list, this.orderBy, this.name, this.chapter});
+  CatalogRule({this.list, this.orderBy, this.name, this.chapter});
 
-  Catalog.fromJson(Map<String, dynamic> json) {
+  CatalogRule.fromJson(Map<String, dynamic> json) {
     list = json['list'];
     orderBy = json['orderBy'];
     name = json['name'];
@@ -173,12 +173,12 @@ class Catalog {
   }
 }
 
-class Chapter {
+class ChapterRule {
   String content;
 
-  Chapter({this.content});
+  ChapterRule({this.content});
 
-  Chapter.fromJson(Map<String, dynamic> json) {
+  ChapterRule.fromJson(Map<String, dynamic> json) {
     content = json['content'];
   }
 
@@ -189,7 +189,26 @@ class Chapter {
   }
 }
 
-class Rank {
+class Categories {
+  String key;
+  String value;
+
+  Categories({this.key, this.value});
+
+  Categories.fromJson(Map<String, dynamic> json) {
+    key = json['key'];
+    value = json['value'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['key'] = this.key;
+    data['value'] = this.value;
+    return data;
+  }
+}
+
+class RankRule {
   String title;
   String url;
   int page;
@@ -201,7 +220,7 @@ class Rank {
   String detail;
   List<Categories> categories;
 
-  Rank(
+  RankRule(
       {this.title,
       this.url,
       this.page,
@@ -213,7 +232,7 @@ class Rank {
       this.detail,
       this.categories});
 
-  Rank.fromJson(Map<String, dynamic> json) {
+  RankRule.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     url = json['url'];
     page = json['page'];
@@ -245,25 +264,6 @@ class Rank {
     if (this.categories != null) {
       data['categories'] = this.categories.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class Categories {
-  String key;
-  String value;
-
-  Categories({this.key, this.value});
-
-  Categories.fromJson(Map<String, dynamic> json) {
-    key = json['key'];
-    value = json['value'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['key'] = this.key;
-    data['value'] = this.value;
     return data;
   }
 }

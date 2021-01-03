@@ -9,17 +9,17 @@
         "name": "h4 > a",
         "author": "",
         "cover": "a > img",
-        "detail": "a > div > div.mod_book_detail_info > h3"
+        "detail": "a"
     },
     "detail": {
-        "name": ".title > span:nth-child(1)",
-        "author": ".author-name",
-        "cover": ".left-part > .figure > .pic > a > img",
-        "summary": ".introduce",
-        "status": ".count-detail > div:nth-child(1) > span:nth-child(2)",
-        "update": ".count-detail > div:nth-child(2) > span",
-        "lastChapter": ".chapter-info > h3 > a",
-        "catalog": ".btn-row > a:nth-child(1)"
+        "name": "div.works-intro-head.clearfix > h2 > strong",
+        "author": "div.works-intro-detail.ui-left > div > p > span > em",
+        "cover": "div.works-cover.ui-left > a > img",
+        "summary": "div.works-intro-detail.ui-left > div > em > p",
+        "status": "div.works-cover.ui-left > label",
+        "update": "#chapter > div.works-chapter-top > ul > li:nth-child(2) > span.ui-pl10",
+        "lastChapter": "#chapter > div.works-chapter-top > ul > li:nth-child(2) > a",
+        "catalog": ""
     },
     "catalog": {
         "list": ".story-catalog",
